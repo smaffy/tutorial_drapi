@@ -1,0 +1,11 @@
+# Project exclude paths
+/venv/
+
+/media/uploads/
+/media/cache/
+/staticfiles/
+
+*.pyc
+__pycache
+/Pipfile
+/Pipfile.lock
