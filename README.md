@@ -91,3 +91,8 @@ Requests and Responses
     http --form POST http://127.0.0.1:8000/snippets/ code="print(123)"
     # POST using JSON
     http --json POST http://127.0.0.1:8000/snippets/ code="print(456)"
+
+******************************
+Class-based Views
+
+    
