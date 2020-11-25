@@ -68,4 +68,26 @@ Serilizators
     #   An automatically determined set of fields.
     #   Simple default implementations for the create() and update() methods.
 
+   
+***********************
+Requests and Responses
+
+    request.POST  # Only handles form data.  Only works for 'POST' method.
+    request.data  # Handles arbitrary data.  Works for 'POST', 'PUT' and 'PATCH' methods.
+    return Response(data)  # Renders to content type as requested by the client.
     
+    The @api_view decorator for working with function based views.
+    The APIView class for working with class-based views.
+    
+    in app urls:    urlpatterns = format_suffix_patterns(urlpatterns)
+
+    http http://127.0.0.1:8000/snippets/ Accept:application/json  # Request JSON
+    http http://127.0.0.1:8000/snippets/ Accept:text/html         # Request HTML
+
+    http http://127.0.0.1:8000/snippets.json  # JSON suffix
+    http http://127.0.0.1:8000/snippets.api   # Browsable API suffix
+
+    # POST using form data
+    http --form POST http://127.0.0.1:8000/snippets/ code="print(123)"
+    # POST using JSON
+    http --json POST http://127.0.0.1:8000/snippets/ code="print(456)"
