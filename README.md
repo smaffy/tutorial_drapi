@@ -125,6 +125,37 @@ Authentication & Permissions
     $ curl -H 'Accept: application/json; indent=4' -au admin:53402505 http://127.0.0.1:8000/snippets/
     success!
     
+**************************
+Relationships & Hyperlinked APIs
     
+    Endpoint for the root of API
+    Endpoint for the highlighted snippets
+
+
+        Hyperlinking our API
+    Dealing with relationships between entities is one of the more challenging aspects of Web API design. There 
+    are a number of different ways that we might choose to represent a relationship:
+        Using primary keys.
+        Using hyperlinking between entities.
+        Using a unique identifying slug field on the related entity.
+        Using the default string representation of the related entity.
+        Nesting the related entity inside the parent representation.
+        Some other custom representation.
+
+    The HyperlinkedModelSerializer has the following differences from ModelSerializer:
+        It does not include the id field by default.
+        It includes a url field, using HyperlinkedIdentityField.
+        Relationships use HyperlinkedRelatedField, instead of PrimaryKeyRelatedField.
+
+*******************
+Pagination 
+    
+    settings.py
+    
+    REST_FRAMEWORK = {
+        'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+        'PAGE_SIZE': 10
+    }
+
     
     
