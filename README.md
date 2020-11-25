@@ -169,3 +169,14 @@ ViewSets & Routers
     A ViewSet class is only bound to a set of method handlers at the last moment, when it is instantiated into a set of views, 
     typically by using a Router class which handles the complexities of defining the URL conf for you.
         
+        
+    # Create a router and register our viewsets with it.
+    router = DefaultRouter()
+    router.register(r'snippets', views.SnippetViewSet)
+    router.register(r'users', views.UserViewSet)
+    
+    
+    # The API URLs are now determined automatically by the router.
+    urlpatterns = [
+        path('', include(router.urls)),
+    ]
