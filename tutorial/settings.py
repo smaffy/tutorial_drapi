@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     # local
     # 'quickstart.apps.QuickstartConfig',
+    'pygments',
     'snippets.apps.SnippetsConfig',
 ]
 

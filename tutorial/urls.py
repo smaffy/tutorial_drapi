@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
-from quickstart import views
-
+# from quickstart import views
+from django.contrib import admin
 
 # router = routers.DefaultRouter()
 # router.register(r'users', views.UserViewSet)
@@ -17,8 +17,10 @@ from quickstart import views
 # ]
 
 
-from django.urls import path, include
-
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+
     path('', include('snippets.urls')),
+
 ]

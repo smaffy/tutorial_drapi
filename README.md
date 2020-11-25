@@ -81,18 +81,50 @@ Requests and Responses
     
     in app urls:    urlpatterns = format_suffix_patterns(urlpatterns)
 
-    http http://127.0.0.1:8000/snippets/ Accept:application/json  # Request JSON
-    http http://127.0.0.1:8000/snippets/ Accept:text/html         # Request HTML
+    $ http http://127.0.0.1:8000/snippets/ Accept:application/json  # Request JSON
+    $ http http://127.0.0.1:8000/snippets/ Accept:text/html         # Request HTML
 
-    http http://127.0.0.1:8000/snippets.json  # JSON suffix
-    http http://127.0.0.1:8000/snippets.api   # Browsable API suffix
+    $ http http://127.0.0.1:8000/snippets.json  # JSON suffix
+    $ http http://127.0.0.1:8000/snippets.api   # Browsable API suffix
 
     # POST using form data
-    http --form POST http://127.0.0.1:8000/snippets/ code="print(123)"
+    $ http --form POST http://127.0.0.1:8000/snippets/ code="print(123)"
     # POST using JSON
-    http --json POST http://127.0.0.1:8000/snippets/ code="print(456)"
+    $ http --json POST http://127.0.0.1:8000/snippets/ code="print(456)"
 
 ******************************
 Class-based Views
+    
+    Class-based Views without mixins
+    Class-based Views with mixins
+    Class-based Views with generic class-based views
 
+***************************
+Authentication & Permissions
+
+    In code:        
+        Code snippets are always associated with a creator.
+        Only authenticated users may create snippets.
+        Only the creator of a snippet may update or delete it.
+        Unauthenticated requests should have full read-only access.
+
+    changes in model and:
+            rm -f db.sqlite3
+            rm -r snippets/migrations
+            python manage.py makemigrations snippets
+            python manage.py migrate
+    
+    $ http POST http://127.0.0.1:8000/snippets/ code="print(123)"
+
+        {
+            "detail": "Authentication credentials were not provided."
+        }
+        
+    $ http -a admin:53402505 POST http://127.0.0.1:8000/snippets/ code="print(789)"
+    success!
+    $ curl -H 'Accept: application/json; indent=4' -au admin:53402505 http://127.0.0.1:8000/snippets/
+    success!
+    
+    
+    
     
